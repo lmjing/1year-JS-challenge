@@ -47,7 +47,7 @@ let setKeyboardEvent = () => {
             .then(() => {
                 // Question : 왜 여기서 keyName에 접근하면 null이 뜨는지??
                 let box = document.querySelector(findBox);
-                box.classList.add("box--select");
+                box.classList.add("box--press");
             })
             .catch((error) => {
                 console.log(error);
@@ -57,14 +57,14 @@ let setKeyboardEvent = () => {
         audio = null;
     });
 
-    // document.addEventListener("keyup", event => {
-    //     let keyName = event.key.toUpperCase();
-    //     let box = document.querySelector(`[data-key="${keyName}"]`);
-    //     box.classList.remove("box--select");
-    //
-    //     keyName = null;
-    //     box = null;
-    // });
+    document.addEventListener("keyup", event => {
+        let keyName = event.key.toUpperCase();
+        let box = document.querySelector(`[data-key="${keyName}"]`);
+        box.classList.remove("box--press");
+
+        keyName = null;
+        box = null;
+    });
 };
 
 let content = document.getElementById("content");
