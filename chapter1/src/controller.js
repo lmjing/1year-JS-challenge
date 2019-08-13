@@ -51,5 +51,27 @@ let contents = (data) => {
     return template;
 };
 
+let setKeyboardEvent = () => {
+    document.addEventListener("keydown", event => {
+        let keyName = event.key.toUpperCase();
+        switch (keyName) {
+            case "A": console.log("A"); break;
+            case "S": console.log("S"); break;
+            case "D": console.log("D"); break;
+            case "F": console.log("F"); break;
+            case "G": console.log("G"); break;
+            case "H": console.log("H"); break;
+            case "J": console.log("J"); break;
+            case "K": console.log("K"); break;
+            case "L": console.log("L"); break;
+            default: console.log('no'); break;
+        }
+    });
+};
+
 let content = document.getElementById("content");
 content.innerHTML = contents(data);
+
+setKeyboardEvent();
+
+content = null;
