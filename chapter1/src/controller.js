@@ -42,7 +42,10 @@ let contents = (data) => {
     let template = '';
     for (let i=0; i<data.length; i++) {
         template += `
-        <div class="${data[i].key}">${data[i].key}</div>
+        <div class="box">
+            <div class="box--key">${data[i].key}</div>
+            <div class="box--sound">${data[i].sound}</div>
+        </div>
         `;
     }
     return template;
