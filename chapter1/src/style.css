@@ -6,24 +6,27 @@ body {
     color: white;
     position: absolute;
     width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 30%;
+    transform: translateY(-30%);
     text-align: center;
 }
 .box {
     display: inline-block;
+    position: relative;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
     background: rgba(0, 0, 0, 0.5);
     border: 2px solid black;
     width: 100px;
     margin: 10px;
     padding: 10px;
-    text-align: center;
+    transition-duration: 0.07s;
+    transition: transform, border, box-shadow;
 }
 .box--select {
+    -webkit-transform: scale(1.1);
     transform: scale(1.1);
     border: 1px solid #ffc700;
-    box-shadow: 0 0 5px 3px rgba(255, 199, 0, 0.8);
+    box-shadow: 0 0 10px 5px rgba(255, 199, 0, 0.8);
 }
 .box .box--key {
     font-size: x-large;
