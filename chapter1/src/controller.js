@@ -70,7 +70,6 @@ let setKeyboardEvent = () => {
 let content = document.getElementById("content");
 content.innerHTML = contents(data);
 
-
 setKeyboardEvent();
 
 content = null;
