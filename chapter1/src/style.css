@@ -1,0 +1,38 @@
+body {
+    background-image: url("../asset/image/background.jpg");
+    position: relative;
+}
+#content {
+    color: white;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+.box {
+    display: inline-block;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid black;
+    width: 100px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+.box--select {
+    transform: scale(1.1);
+    border: 1px solid #ffc700;
+    box-shadow: 0 0 5px 3px rgba(255, 199, 0, 0.8);
+}
+.box .box--key {
+    font-size: x-large;
+    font-weight: bold;
+}
+.box .box--sound {
+    color: #ffc700;
+    font-size: small;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
