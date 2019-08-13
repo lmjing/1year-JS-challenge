@@ -1,3 +1,8 @@
+/**
+ * @author 이미정
+ * @file style.css
+ * @description css style 적용파일 분리
+ */
 body {
     background-image: url("../asset/image/background.jpg");
     position: relative;
