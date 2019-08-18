@@ -24,11 +24,10 @@ body {
     width: 100px;
     margin: 10px;
     padding: 10px;
-    transition-duration: 0.1s;
-    transition: transform, border, box-shadow;
+    transition-duration: 0.07s;
+    transition-property: transform, border, box-shadow;
 }
 .box--press {
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
     border: 2px solid #ffc700;
     box-shadow: 0 0 10px 5px rgba(255, 199, 0, 0.8);

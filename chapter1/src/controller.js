@@ -53,17 +53,21 @@ let setKeyboardEvent = () => {
                 console.log(error);
             });
 
-        keyName = null;
-        audio = null;
+        // keyName = null;
+        // audio = null;
     });
 
-    document.addEventListener("keyup", event => {
-        let keyName = event.key.toUpperCase();
-        let box = document.querySelector(`[data-key="${keyName}"]`);
-        box.classList.remove("box--press");
+    // document.addEventListener("keyup", event => {
+    //     let keyName = event.key.toUpperCase();
+    //     let box = document.querySelector(`[data-key="${keyName}"]`);
+    //     box.classList.remove("box--press");
+    //
+    //     keyName = null;
+    //     box = null;
+    // });
 
-        keyName = null;
-        box = null;
+    document.addEventListener("transitionend", (event) => {
+        event.target.classList.remove("box--press");
     });
 };
 
