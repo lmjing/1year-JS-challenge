@@ -53,8 +53,8 @@ let setKeyboardEvent = () => {
                 console.log(error);
             });
 
-        // keyName = null;
-        // audio = null;
+        keyName = null;
+        audio = null;
     });
 
     // document.addEventListener("keyup", event => {
@@ -75,6 +75,12 @@ let content = document.getElementById("content");
 content.innerHTML = contents(data);
 
 setKeyboardEvent();
+
+module.exports = {
+    contents: contents,
+    data: data,
+    setKeyboardEvent: setKeyboardEvent,
+};
 
 content = null;
 contents = null;

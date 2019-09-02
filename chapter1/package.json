@@ -10,6 +10,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^24.8.0"
+    "jest": "^24.9.0"
+  },
+  "dependencies": {
+    "jest-serializer-html": "^7.0.0"
+  },
+  "jest": {
+    "verbose": true,
+    "snapshotSerializers": ["jest-serializer-html"]
   }
 }

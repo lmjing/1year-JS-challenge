@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test snapshots - contents result 1`] = `
+<body>
+    <div
+        id="content"
+    >
+    <div
+        class="box"
+        data-key="A"
+    >
+    <kbd
+        class="box--key"
+    >
+        A
+    </kbd>
+    <div
+        class="box--sound"
+    >
+        clap
+    </div>
+</div>
+     <div class="box" data-key="S">
+            <kbd class="box--key">S</kbd>
+            <div class="box--sound">hihat</div>
+        </div>
+
+        <div class="box" data-key="D">
+            <kbd class="box--key">D</kbd>
+            <div class="box--sound">kick</div>
+        </div>
+
+        <div class="box" data-key="F">
+            <kbd class="box--key">F</kbd>
+            <div class="box--sound">openhat</div>
+        </div>
+
+        <div class="box" data-key="G">
+            <kbd class="box--key">G</kbd>
+            <div class="box--sound">boom</div>
+        </div>
+
+        <div class="box" data-key="H">
+            <kbd class="box--key">H</kbd>
+            <div class="box--sound">ride</div>
+        </div>
+
+        <div class="box" data-key="J">
+            <kbd class="box--key">J</kbd>
+            <div class="box--sound">snare</div>
+        </div>
+
+        <div class="box" data-key="K">
+            <kbd class="box--key">K</kbd>
+            <div class="box--sound">tom</div>
+        </div>
+
+        <div class="box" data-key="L">
+            <kbd class="box--key">L</kbd>
+            <div class="box--sound">tink</div>
+        </div>
+    </div>
+</body>
+`;
+
+exports[`test snapshots - test 1`] = `
+<ul>
+  <li>
+    <a href="#">
+      My HTML
+    </a>
+  </li>
+</ul>
+`;

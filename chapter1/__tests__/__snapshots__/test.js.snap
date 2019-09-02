@@ -1,0 +1,9 @@
+exports[`test snapshots - test 1`] = `
+<ul>
+  <li>
+    <a href="#">
+      My HTML
+    </a>
+  </li>
+</ul>
+`;
