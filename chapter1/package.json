@@ -9,14 +9,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "jest": "^24.9.0"
-  },
-  "dependencies": {
-    "jest-serializer-html": "^7.0.0"
-  },
   "jest": {
     "verbose": true,
     "snapshotSerializers": ["jest-serializer-html"]
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "jest-serializer-html": "^7.0.0"
   }
 }

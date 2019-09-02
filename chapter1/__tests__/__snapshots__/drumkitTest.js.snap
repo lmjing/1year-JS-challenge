@@ -2,25 +2,13 @@
 
 exports[`test snapshots - contents result 1`] = `
 <body>
-    <div
-        id="content"
-    >
-    <div
-        class="box"
-        data-key="A"
-    >
-    <kbd
-        class="box--key"
-    >
-        A
-    </kbd>
-    <div
-        class="box--sound"
-    >
-        clap
-    </div>
-</div>
-     <div class="box" data-key="S">
+    <div id="content">
+        <div class="box" data-key="A">
+            <kbd class="box--key">A</kbd>
+            <div class="box--sound">clap</div>
+        </div>
+
+        <div class="box" data-key="S">
             <kbd class="box--key">S</kbd>
             <div class="box--sound">hihat</div>
         </div>
@@ -59,9 +47,11 @@ exports[`test snapshots - contents result 1`] = `
             <kbd class="box--key">L</kbd>
             <div class="box--sound">tink</div>
         </div>
-    </div>
-</body>
-`;
+        </div>
+    <script type="application/javascript" src="controller.js"></script>
+
+
+</body>`;
 
 exports[`test snapshots - test 1`] = `
 <ul>
@@ -70,5 +60,4 @@ exports[`test snapshots - test 1`] = `
       My HTML
     </a>
   </li>
-</ul>
-`;
+</ul>`;
