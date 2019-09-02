@@ -48,11 +48,9 @@ let keyDownEvent = event => {
             // Question : 왜 여기서 keyName에 접근하면 null이 뜨는지??
             let box = document.querySelector(findBox);
             box.classList.add("box--press");
-            return true;
         })
         .catch((error) => {
             console.log(error);
-            return false;
         });
 
     keyName = null;
@@ -107,6 +105,7 @@ module.exports = {
   contents,
   data,
     keyDownEvent,
+    setKeyboardEvent,
 };
 
 content = null;
