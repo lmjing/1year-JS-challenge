@@ -8,10 +8,6 @@ test('test snapshots - contents result', function () {
     expect(document.body).toMatchSnapshot();
 });
 
-it("test snapshots - test", () => {
-    expect('<ul><li><a href="#">My HTML</a></li></ul>').toMatchSnapshot();
-});
-
 // test("test keydown event", () => {
 //     import { setKeyboardEvent } from "../src/controller";
 // });

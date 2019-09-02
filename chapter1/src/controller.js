@@ -76,11 +76,9 @@ content.innerHTML = contents(data);
 
 setKeyboardEvent();
 
-module.exports = {
-    contents: contents,
-    data: data,
-    setKeyboardEvent: setKeyboardEvent,
-};
+exports.contents = contents;
+exports.data = data;
+exports.setKeyboardEvent = setKeyboardEvent;
 
 content = null;
 contents = null;
