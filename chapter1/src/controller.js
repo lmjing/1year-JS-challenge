@@ -40,7 +40,6 @@ let contents = (data) => {
 let pressBox = (query) => {
     let box = document.querySelector(query);
     box.classList.add("box--press");
-    console.log("!!!!!!!!!!!!!!!!!!");
 };
 
 let setKeyboardEvent = () => {
