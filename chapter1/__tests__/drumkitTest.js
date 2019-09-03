@@ -11,22 +11,28 @@ test('test snapshots - contents result', function () {
 });
 
 test("test keydown event", async () => {
-    window.HTMLMediaElement.prototype.play = jest.fn().mockResolvedValue('music play');
-    window.HTMLMediaElement.prototype.play.then = jest.fn().mockResolvedValue(true);
+    let keyName = 'A';
+    // JSdom이 접근할 수 있도록, mock 함수로 선언해둔다.
+    window.HTMLMediaElement.prototype.play = jest.fn(() => {
+        console.log("11111");
+       controller.pressBox(`[data-key="${keyName}"]`); // 실제 성공할 경우, 기존 코드와 동일한 함수를 호출하게 지정한다.
+    });
+    window.HTMLMediaElement.prototype.play.then = jest.fn();
 
-    // 1. keyboard 이벤트 등록
+    // 이벤트 호출되는지 확인하기 위해 spy설정
+    let spyFn = jest.spyOn(controller, "pressBox");
+
+    // keyboard 이벤트 등록
     controller.setKeyboardEvent();
 
-    // 2. 이벤트 호출되는지 확인하기 위해 spy설정
-    let spyFn = jest.spyOn(controller, "keyDownEvent");
-
-    // 3. keyboard 이벤트 임의 발생
-    let event = new KeyboardEvent('keydown', { key: 'a' });
+    // keyboard 이벤트 임의 발생
+    let event = new KeyboardEvent('keydown', { key: keyName });
     await document.dispatchEvent(event);
 
-    // 4. controller.keyDownEvent 내부 코드 sound.play 실행됨을 확인
+    // check1. controller.keyDownEvent 내부 코드 sound.play 실행됨을 확인
     expect(window.HTMLMediaElement.prototype.play).toBeCalled();
-
-    // 5. spy함수 호출되는지 확인 - fail
     expect(spyFn).toBeCalled();
+    // check2. pressBox 호출되어 UI 적용 제대로 되었는지 확인.
+    let ele = document.querySelector(`[data-key="${keyName}"]`);
+    expect(ele.classList.contains('box--press')).toBe(true);
 });

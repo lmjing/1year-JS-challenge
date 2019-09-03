@@ -37,46 +37,30 @@ let contents = (data) => {
  4) transition - https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
  5) data- 찾기 - https://intu.io/blog/dont-use-data-attributes-to-find-html-elements-with-js/
   */
-
-let keyDownEvent = event => {
-    let keyName = event.key.toUpperCase();
-    let audio = new Audio(`../asset/sound/${data[keyName]}.wav`);
-    let findBox = `[data-key="${keyName}"]`;
-
-    audio.play()
-        .then(() => {
-            // Question : 왜 여기서 keyName에 접근하면 null이 뜨는지??
-            let box = document.querySelector(findBox);
-            box.classList.add("box--press");
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-
-    keyName = null;
-    audio = null;
+let pressBox = (query) => {
+    let box = document.querySelector(query);
+    box.classList.add("box--press");
+    console.log("!!!!!!!!!!!!!!!!!!");
 };
 
 let setKeyboardEvent = () => {
-    document.addEventListener("keydown", keyDownEvent);
-    // document.addEventListener("keydown", event => {
-    //     let keyName = event.key.toUpperCase();
-    //     let audio = new Audio(`../asset/sound/${data[keyName]}.wav`);
-    //     let findBox = `[data-key="${keyName}"]`;
-    //
-    //     audio.play()
-    //         .then(() => {
-    //             // Question : 왜 여기서 keyName에 접근하면 null이 뜨는지??
-    //             let box = document.querySelector(findBox);
-    //             box.classList.add("box--press");
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         });
-    //
-    //     keyName = null;
-    //     audio = null;
-    // });
+    document.addEventListener("keydown", event => {
+        let keyName = event.key.toUpperCase();
+        let audio = new Audio(`../asset/sound/${data[keyName]}.wav`);
+
+        audio.play()
+            .then(() => {
+                // let box = document.querySelector(findBox);
+                // box.classList.add("box--press");
+                pressBox(`[data-key="${keyName}"]`);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        keyName = null;
+        audio = null;
+    });
 
     // document.addEventListener("keyup", event => {
     //     let keyName = event.key.toUpperCase();
@@ -97,15 +81,11 @@ content.innerHTML = contents(data);
 
 setKeyboardEvent();
 
-// exports.contents = contents;
-// exports.data = data;
-// exports.setKeyboardEvent = setKeyboardEvent;
-
 module.exports = {
-  contents,
-  data,
-    keyDownEvent,
+    contents,
+    data,
     setKeyboardEvent,
+    pressBox,
 };
 
 content = null;
