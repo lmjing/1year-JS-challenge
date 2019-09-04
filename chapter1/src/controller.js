@@ -37,24 +37,28 @@ let contents = (data) => {
  4) transition - https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
  5) data- 찾기 - https://intu.io/blog/dont-use-data-attributes-to-find-html-elements-with-js/
   */
+let pressBox = (query) => {
+    let box = document.querySelector(query);
+    box.classList.add("box--press");
+};
+
 let setKeyboardEvent = () => {
     document.addEventListener("keydown", event => {
         let keyName = event.key.toUpperCase();
         let audio = new Audio(`../asset/sound/${data[keyName]}.wav`);
-        let findBox = `[data-key="${keyName}"]`;
 
         audio.play()
             .then(() => {
-                // Question : 왜 여기서 keyName에 접근하면 null이 뜨는지??
-                let box = document.querySelector(findBox);
-                box.classList.add("box--press");
+                // let box = document.querySelector(findBox);
+                // box.classList.add("box--press");
+                pressBox(`[data-key="${keyName}"]`);
             })
             .catch((error) => {
                 console.log(error);
             });
 
-        // keyName = null;
-        // audio = null;
+        keyName = null;
+        audio = null;
     });
 
     // document.addEventListener("keyup", event => {
@@ -75,6 +79,13 @@ let content = document.getElementById("content");
 content.innerHTML = contents(data);
 
 setKeyboardEvent();
+
+module.exports = {
+    contents,
+    data,
+    setKeyboardEvent,
+    pressBox,
+};
 
 content = null;
 contents = null;
