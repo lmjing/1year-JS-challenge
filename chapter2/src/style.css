@@ -11,13 +11,32 @@ html, body {
     transform: translate(-100px, -100px);
 }
 
-#time {
-    position: absolute;
-}
-
 #clock {
+    position: relative;
     width: 100%;
     height: 100%;
     border-radius: 50%;
     border: white solid 10px;
+}
+
+#time {
+    position: fixed;
+    z-index: 100;
+}
+
+.hour, .minute, .second {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    border: 2px solid;
+    width: 49%;
+}
+
+.minute {
+    width: 40%;
+    color: rgba(255,199,0,0.84);
+}
+
+.second {
+    color: red;
 }
