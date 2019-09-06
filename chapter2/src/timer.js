@@ -1,18 +1,36 @@
-let setSecondHand = (second) => {
+let moveHourHand = (hour) => {
+    let hourtHand = document.querySelector('.hour');
+    let angle = (hour % 12) * 30;
+    hourtHand.style.transform = `rotate(${angle}deg)`;
+
+    hourtHand = null; angle = null;
+};
+
+let moveMinuteHand = (minute) => {
+    let minuteHand = document.querySelector('.minute');
+    let angle = minute * 6;
+    minuteHand.style.transform = `rotate(${angle}deg)`;
+
+    minuteHand = null; angle = null;
+};
+
+let moveSecondHand = (second) => {
     let secondHand = document.querySelector('.second');
     let angle = second * 6;
-    console.log(`${second}초의 각도는 ${angle}`);
     secondHand.style.transform = `rotate(${angle}deg)`;
+
+    secondHand = null; angle = null;
 };
 
 let setTime = () => {
     let now = new Date();
-    let el = document.getElementById('time');
-    el.innerText = now;
+    moveHourHand(9);
+    // moveHourHand(now.getHours());
+    moveMinuteHand(55);
+    // moveMinuteHand(now.getMinutes());
+    moveSecondHand(now.getSeconds());
 
-    setSecondHand(now.getSeconds());
-
-    now = null; el = null;
+    now = null;
 };
 
 let startClock = () => {
