@@ -1,105 +1,52 @@
-
-
-let moveHourHand = (hour) => {
-    let hourHand = document.querySelector('.hour');
-    let angle = (hour % 12) * 30;
-    hourHand.style.transform = `rotate(${angle}deg)`;
-
-    hourHand = null; angle = null;
+let timeToAngle = (type, time) => {
+    return type === "hour" ?  (time % 12) * 30 : time * 6;
 };
 
-
-
-let controllMinuteHand = (el, ) => {
-  // case1. 그냥 곧바로 현재시간으로 설정
-};
-
-let toMoveMinuteHand = (minute) => {
-    let minuteHand = document.querySelector('.minute');
-    let angle = minute * 6;
-    moveHand(minuteHand, angle);
-
-    minuteHand = null; angle = null;
-};
-
-let moveSecondHand = (second) => {
-    let secondHand = document.querySelector('.second');
-    let angle = second * 6;
-    secondHand.style.transform = `rotate(${angle}deg)`;
-
-    secondHand = null; angle = null;
-};
-
-/////
-let moveHand = (el, angle) => {
+let moveHand = (type, time) => {
+    let el = document.querySelector(`.${type}`);
+    let angle = timeToAngle(type, time);
     el.style.transform = `rotate(${angle}deg)`;
+
     el = null; angle = null;
 };
 
-let angleController = {
-    getHourAngle(hour) {
-        return (hour % 12) * 30;
-    },
-    getMinSecAngle(time) {
-        return time * 6;
-    }
-};
-
-let setInitTime = (timeHands) => {
+let setInitTime = () => {
     let now = new Date();
-    let angle = {
-        hourAngle : angleController.getHourAngle(now.getHours()),
-        minuteAngle : angleController.getMinSecAngle(now.getMinutes()),
-        secondAngle : angleController.getMinSecAngle(now.getSeconds()),
-    };
-    moveHand(timeHands.hourHand, angle.hourAngle);
-    moveHand(timeHands.minuteHand, angle.minuteAngle);
-    moveHand(timeHands.secondHand, angle.secondAngle);
+    moveHand('hour', now.getHours());
+    moveHand('minute', now.getMinutes());
+    moveHand('second', now.getSeconds());
 };
 
+// 다음 시간을 향해 트랜지션 적용
+let setNextTime = (type, now) => {
 
-// class UpdateTimeController {
-//     constructor(timeHands) {
-//         this._timeHands = timeHands;
-//     }
-//
-//     timeUpdate() {
-//         this.now = new Date();
-//         //  삭제하기
-//         let timeEl = document.getElementById('time');
-//         timeEl.innerText = now;
-//
-//     }
-//     _changeSecondHand() {
-//         let secondAngle = angleController.getMinSecAngle(this.now.getSeconds());
-//         console.log(secondAngle);
-//         // moveHand(this._timeHands.secondHand, secondAngle);
-//     };
-// }
-function UpdateTimeController (timeHands) {
-    this.timeHands = timeHands;
-    this.changeSecondHand = function () {
-        let secondAngle = angleController.getMinSecAngle(this.now.getSeconds());
-        moveHand(this.timeHands.secondHand, secondAngle);
-    };
-    this.timeUpdate = function () {
-        this.now = new Date();
-        this.changeSecondHand();
-        //  삭제하기
-        let timeEl = document.getElementById('time');
-        timeEl.innerText = now;
-    };
+    // 일자 더하기 (지금 그냥 셋팅 해버림)
+    let nextTime = type === 'minute' ? now.setMinutes(1) : now.setHours(1);
+    console.log(nextTime.toString());
+    moveHand(type, type === 'minute' ? nextTime.getMinutes() : nextTime.getHours());
+    setTransition(type, type === 'minute' ? 60 : 3600);
 };
 
-let hourHand = document.querySelector('.hour');
-let minuteHand = document.querySelector('.minute');
-let secondHand = document.querySelector('.second');
-let timeHands = {
-    hourHand,
-    minuteHand,
-    secondHand,
+let timeUpdate = () => {
+    let now = new Date();
+    // 초는 바로 현재 시간 가르킴
+    moveHand('second', now.getSeconds());
+    // 분, 시는 다음 시간 가르키며, 트랜지션 적용
+    setNextTime('minute', now);
+    setNextTime('hour', now);
+    //  삭제하기
+    let timeEl = document.getElementById('time');
+    timeEl.innerText = now;
+};
+
+let setTransition = (type, time) => {
+    let el = document.querySelector(`.${type}`);
+    el.style.transition = `transform ${time}s`;
+    el.style.webkitTransition = `transform ${time}s`;
 };
 // 맨 처음 시간 셋팅(해당 값 기준으로 서서히 트랜지션 적용해 이동될 예정)
-setInitTime(timeHands);
-let controller = new UpdateTimeController(timeHands);
-setInterval(controller.timeUpdate, 1000);
+setInitTime();
+// 여기 남은 시간 계산해서 해당 시간만큼 transition 적용해야함.
+setTimeout(setTransition, 1000, 'minute', 60);
+setTimeout(setTransition, 1000, 'hour', 3600);
+setInterval(timeUpdate, 1000);
