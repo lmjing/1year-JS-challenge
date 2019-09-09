@@ -19,10 +19,10 @@ let setInitTime = () => {
 
 // 다음 시간을 향해 트랜지션 적용
 let setNextTime = (type, now) => {
-
     // 일자 더하기 (지금 그냥 셋팅 해버림)
-    let nextTime = type === 'minute' ? now.setMinutes(1) : now.setHours(1);
-    console.log(nextTime.toString());
+    let nextTime = new Date();
+    if (type === 'minute') nextTime.setMinutes(now.getMinutes() + 1);
+    else nextTime.setHours(now.getHours() + 1);
     moveHand(type, type === 'minute' ? nextTime.getMinutes() : nextTime.getHours());
     setTransition(type, type === 'minute' ? 60 : 3600);
 };
