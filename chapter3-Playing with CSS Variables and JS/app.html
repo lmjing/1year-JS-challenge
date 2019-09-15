@@ -15,26 +15,53 @@
         h2 {
             font-size: 1.5em;
         }
-        .color {
-            color: yellow;
+        .text {
+            color: #ffc600;
         }
         .controller {
             margin-bottom: 50px;
         }
+        img {
+            background: #ffc600;
+            padding: 10px;
+            filter: blur(20px);
+        }
+        input {
+            width: 100px;
+        }
     </style>
 </head>
 <body>
-    <h2>Update CSS Variables with <span class="color">JS</span></h2>
+    <h2>Update CSS Variables with <span class="text">JS</span></h2>
     <div class="controller">
         <label for="controller--spacing">Spacing:</label>
-        <input type="range" id="controller--spacing">
+        <input type="range" id="controller--spacing" name="spacing" min="10" max="200" value="10">
 
         <label for="controller--blur">Blur:</label>
-        <input type="range" id="controller--blur">
+        <input type="range" id="controller--blur" name="blur" min="0" max="30" value="15">
 
         <label for="controller--color">Base Color:</label>
-        <input type="color" id="controller--color">
+        <input type="color" id="controller--color" name="color" value="#ffc600">
     </div>
-    <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" alt="타겟 사진">
+    <img id="image" src="https://source.unsplash.com/7bwQXzbF6KE/800x500" alt="타겟 사진">
+
+    <script>
+        let imageEl = document.getElementById("image");
+        let textEl = document.querySelector(".text");
+
+        document.getElementById("controller--spacing").addEventListener("input", function () {
+            imageEl.style.padding = `${this.value}px`;
+        });
+
+
+        document.getElementById("controller--blur").addEventListener("input", function () {
+            imageEl.style.filter = `blur(${this.value}px)`;
+        });
+
+        document.getElementById("controller--color").addEventListener("input", function () {
+            imageEl.style.background = this.value;
+            textEl.style.color = this.value;
+        });
+    </script>
 </body>
 </html>
