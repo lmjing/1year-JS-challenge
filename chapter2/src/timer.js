@@ -27,18 +27,34 @@ let setNextTime = (type, now) => {
     let nextTime = new Date();
     if (type === 'minute') nextTime.setMinutes(now.getMinutes() + 1);
     else nextTime.setHours(now.getHours() + 1);
+
     let angle = timeToAngle(type, type === 'minute' ? nextTime.getMinutes() : nextTime.getHours());
     moveHand(type, angle);
-    setTransition(type, type === 'minute' ? 60 : 3600);
+
+    let time = type === 'minute' ? 60 - now.getSeconds() : 3600 - now.getMinutes() * 60;
+    console.log(`${type} ${time}만큼 transition 적용`);
+    setTransition(type, time);
 };
 
 let timeUpdate = () => {
     let now = new Date();
     // 초는 바로 현재 시간 가르킴
     moveHand('second', timeToAngle('second', now.getSeconds()));
+
+    let time = document.querySelector(`.time`);
+    time.innerText = now;
+
     // 분, 시는 다음 시간 가르키며, 트랜지션 적용
+    if (init === null && now.getSeconds() !== 0)
+        return;
+
+    console.log('분 reset');
     setNextTime('minute', now);
-    setNextTime('hour', now);
+
+    if (init !== null || now.getMinutes() == 0)
+        setNextTime('hour', now);
+
+    init = null;
 };
 
 let setTransition = (type, time) => {
@@ -47,10 +63,11 @@ let setTransition = (type, time) => {
     el.style.webkitTransition = `transform ${time}s`;
 };
 
+let init = new Date();
 // 맨 처음 시간 셋팅(해당 값 기준으로 서서히 트랜지션 적용해 이동될 예정)
-setInitTime();
 
-// 여기 남은 시간 계산해서 해당 시간만큼 transition 적용해야함.
-setTimeout(setTransition, 1000, 'minute', 60);
-setTimeout(setTransition, 1000, 'hour', 3600);
+moveHand('check1', timeToAngle('minute', 8));
+moveHand('check2', timeToAngle('minute', 9));
+
+setInitTime();
 setInterval(timeUpdate, 1000);
