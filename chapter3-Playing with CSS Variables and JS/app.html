@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <title>Playing with CSS Variables and JS</title>
     <style>
+        /* --name 으로 선언하면 변수*/
+        :root {
+            --base-color: #ffc600;
+            --blur: 20px;
+            --spacing: 10px;
+        }
+        .text {
+            color: var(--base-color);
+        }
+        img {
+            background: var(--base-color);
+            padding: var(--spacing);
+            filter: blur(var(--blur));
+        }
+
         body {
             background: #193549;
             text-align: center;
@@ -15,16 +30,8 @@
         h2 {
             font-size: 1.5em;
         }
-        .text {
-            color: #ffc600;
-        }
-        .controller {
+        .controllers {
             margin-bottom: 50px;
-        }
-        img {
-            background: #ffc600;
-            padding: 10px;
-            filter: blur(20px);
         }
         input {
             width: 100px;
@@ -33,7 +40,7 @@
 </head>
 <body>
     <h2>Update CSS Variables with <span class="text">JS</span></h2>
-    <div class="controller">
+    <div class="controllers">
         <label for="controller--spacing">Spacing:</label>
         <input type="range" id="controller--spacing" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
