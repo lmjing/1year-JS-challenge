@@ -35,10 +35,10 @@
     <h2>Update CSS Variables with <span class="text">JS</span></h2>
     <div class="controller">
         <label for="controller--spacing">Spacing:</label>
-        <input type="range" id="controller--spacing" name="spacing" min="10" max="200" value="10">
+        <input type="range" id="controller--spacing" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
         <label for="controller--blur">Blur:</label>
-        <input type="range" id="controller--blur" name="blur" min="0" max="30" value="15">
+        <input type="range" id="controller--blur" name="blur" min="0" max="30" value="15" data-sizing="px">
 
         <label for="controller--color">Base Color:</label>
         <input type="color" id="controller--color" name="color" value="#ffc600">
@@ -50,12 +50,13 @@
         let textEl = document.querySelector(".text");
 
         document.getElementById("controller--spacing").addEventListener("input", function () {
-            imageEl.style.padding = `${this.value}px`;
+            let suffix = this.dataset.sizing;
+            imageEl.style.padding = `${this.value}${suffix}`;
         });
 
-
         document.getElementById("controller--blur").addEventListener("input", function () {
-            imageEl.style.filter = `blur(${this.value}px)`;
+            let suffix = this.dataset.sizing;
+            imageEl.style.filter = `blur(${this.value}${suffix})`;
         });
 
         document.getElementById("controller--color").addEventListener("input", function () {
