@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>Playing with CSS Variables and JS</title>
+    <style>
+        body {
+            background: #193549;
+            text-align: center;
+            font-size: 50px;
+            font-family: 'helvetica neue', sans-serif;
+            color: white;
+            font-weight: lighter;
+        }
+        h2 {
+            font-size: 1.5em;
+        }
+        .color {
+            color: yellow;
+        }
+        .controller {
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Update CSS Variables with <span class="color">JS</span></h2>
+    <div class="controller">
+        <label for="controller--spacing">Spacing:</label>
+        <input type="range" id="controller--spacing">
+
+        <label for="controller--blur">Blur:</label>
+        <input type="range" id="controller--blur">
+
+        <label for="controller--color">Base Color:</label>
+        <input type="color" id="controller--color">
+    </div>
+    <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" alt="타겟 사진">
+</body>
+</html>
