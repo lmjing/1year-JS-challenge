@@ -39,9 +39,6 @@ let timeUpdate = () => {
     // 분, 시는 다음 시간 가르키며, 트랜지션 적용
     setNextTime('minute', now);
     setNextTime('hour', now);
-    //  삭제하기
-    let timeEl = document.getElementById('time');
-    timeEl.innerText = now;
 };
 
 let setTransition = (type, time) => {
@@ -49,16 +46,6 @@ let setTransition = (type, time) => {
     el.style.transition = `transform ${time}s`;
     el.style.webkitTransition = `transform ${time}s`;
 };
-
-
-// ㅅㅣ간 체크용
-let check1 = document.querySelector(`.check-minute`);
-let check2 = document.querySelector(`.check-m`);
-
-let angle1 = timeToAngle('minute', 4);
-let angle2 = timeToAngle('minute', 5);
-check1.style.transform = `rotate(${angle1}deg)`;
-check2.style.transform = `rotate(${angle2}deg)`;
 
 // 맨 처음 시간 셋팅(해당 값 기준으로 서서히 트랜지션 적용해 이동될 예정)
 setInitTime();

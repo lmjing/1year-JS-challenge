@@ -24,7 +24,7 @@ html, body {
     z-index: 10;
 }
 
-.hour, .minute, .second, .check-minute, .check-m {
+.hour, .minute, .second {
     position: absolute;
     bottom: 50%;
     left: 50%;
@@ -42,7 +42,4 @@ html, body {
     border: 1px solid;
     height: 50%;
     transform-origin: 1px 100%;
-}
-.check-minute, .check-m {
-    color: yellow;
 }
