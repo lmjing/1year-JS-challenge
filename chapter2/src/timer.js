@@ -41,9 +41,6 @@ let timeUpdate = () => {
     // 초는 바로 현재 시간 가르킴
     moveHand('second', timeToAngle('second', now.getSeconds()));
 
-    let time = document.querySelector(`.time`);
-    time.innerText = now;
-
     // 분, 시는 다음 시간 가르키며, 트랜지션 적용
     if (init === null && now.getSeconds() !== 0)
         return;
@@ -65,9 +62,6 @@ let setTransition = (type, time) => {
 
 let init = new Date();
 // 맨 처음 시간 셋팅(해당 값 기준으로 서서히 트랜지션 적용해 이동될 예정)
-
-moveHand('check1', timeToAngle('minute', 8));
-moveHand('check2', timeToAngle('minute', 9));
 
 setInitTime();
 setInterval(timeUpdate, 1000);
