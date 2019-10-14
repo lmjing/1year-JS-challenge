@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>Playing with CSS Variables and JS</title>
+    <style>
+        /* --name 으로 선언하면 변수*/
+        :root {
+            --base-color: #ffc600;
+            --blur: 20px;
+            --spacing: 10px;
+        }
+        .text {
+            color: var(--base-color);
+        }
+        img {
+            background: var(--base-color);
+            padding: var(--spacing);
+            filter: blur(var(--blur));
+        }
+
+        body {
+            background: #193549;
+            text-align: center;
+            font-size: 50px;
+            font-family: 'helvetica neue', sans-serif;
+            color: white;
+            font-weight: lighter;
+        }
+        h2 {
+            font-size: 1.5em;
+        }
+        .controllers {
+            margin-bottom: 50px;
+        }
+        input {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Update CSS Variables with <span class="text">JS</span></h2>
+    <div class="controllers">
+        <label for="controller--spacing">Spacing:</label>
+        <input type="range" id="controller--spacing" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+        <label for="controller--blur">Blur:</label>
+        <input type="range" id="controller--blur" name="blur" min="0" max="30" value="15" data-sizing="px">
+
+        <label for="controller--base-color">Base Color:</label>
+        <input type="color" id="controller--base-color" name="base-color" value="#ffc600">
+    </div>
+    <img id="image" src="https://source.unsplash.com/7bwQXzbF6KE/800x500" alt="타겟 사진">
+
+    <script>
+        function handleEvent() {
+            let suffix = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+        };
+
+        let inputs = document.querySelectorAll(".controllers input");
+        inputs.forEach(input => input.addEventListener("input", handleEvent));
+    </script>
+</body>
+</html>
