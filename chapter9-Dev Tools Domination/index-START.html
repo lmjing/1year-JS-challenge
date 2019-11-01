@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()" class="test">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    /*
+    inspector로 원하는 element 선택 후, 오른쪽 클릭 `break on`-`attribute modification`클릭
+     */
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular - 일반 콘솔 출력
+    console.log('hello');
+
+    // Interpolated - 이모티콘 등 %s로 텍스트 삽입 출력 가능
+    console.log('기존 방식 - 다양한 String 타입 출력 가능 %s', '👞');
+    console.log(`제네릭 - 다양한 String 타입 출력 가능 ${'👞'}`);
+
+    // Styled - %c로 css 정의 가능
+    console.log('%c css 스타일도 적용할 수 있다.', 'font-size:50px; background: red; text-shadow: 10px 10px 0 blue');
+
+    // warning! - console에 warning 표시 됨
+    console.warn('경고 표시');
+
+    // Error :|
+    console.error('에러 표시');
+
+    // Info - 왜 안뜨지..?
+    console.info('정보 표시');
+
+    // Testing
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('test'), 'p에는 test라는 class가 없습니다.'); // 성공
+    console.assert(p.classList.contains('ouch'), 'p에는 ouch라는 class가 없습니다.'); // 실패
+
+    // clearing - console 내역 모두 지움
+    console.clear();
+
+    // Viewing DOM Elements
+    // console.log는 요소를 HTML과 같은 트리 구조로 출력합니다.
+    console.log(p); // html 코드 그대로 출력되며 mouseover 시 inspector와 동일하게 해당 element를 가르킨다.
+    // console.dir은 요소를 JSON과 같은 트리 구조로 출력합니다.
+    console.dir(p);
+
+    // Grouping together - 그룹핑하여 콘솔을 묶어줌 (하이라킹 구조)
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`); // 그룹 명 지정 - 시작점
+      console.log(`개 이름은 ${dog.name}`);
+      console.log(`${dog.name}의 나이는 ${dog.age}`);
+      console.groupEnd(`${dog.name}`); // 그룹 명 지정 - 끝점
+    });
+
+    // counting - 문자열 : 개수 형식으로 console 창에 출력된 개수 세줌
+    console.count("apple");
+    console.count("apple");
+    console.count("banna");
+    console.count("apple");
+    console.count("apple");
+    console.count("banna");
+    console.count("banna");
+    console.count("banna");
+    console.clear();
+    console.count("banna"); // 1로 초기화 됨
+
+    // timing
+    console.time('fetching data'); // 타이머 설정 - 시작
+    fetch('https://api.github.com/users/wesbos')
+            .then(data => data.json())
+            .then(data => {
+              console.timeEnd('fetching data');
+              console.log(data);
+            });
+
+    // table - 배열, object를 테이블 형식으로 표시
+    console.table(dogs);
+
+  </script>
+</body>
+</html>
